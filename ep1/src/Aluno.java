@@ -9,6 +9,10 @@ public class Aluno {
         this.curso = curso;
     }
 
+    public Aluno() {
+
+    }
+
     public boolean podeReceberNota() {
         return true;
     }

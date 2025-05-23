@@ -4,6 +4,8 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
+        Gerenciador gerenciador = new Gerenciador();
+
         int opcao;
 
         do {
@@ -41,6 +43,9 @@ public class Main {
 
     public static void modoAluno(Scanner sc) {
         int opcao;
+        Gerenciador gerenciador = new Gerenciador();
+        Scanner entrada = new Scanner(System.in);
+
         do {
             System.out.println("\n-- MENU ALUNO --");
             System.out.println("1. Cadastrar Aluno");
@@ -53,10 +58,10 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-                    // chamar função cadastrarAluno()
+                    gerenciador.cadastrarAluno(entrada);
                     break;
                 case 2:
-                    // chamar função listarAlunos()
+                    gerenciador.listarAlunos();
                     break;
                 // etc.
             }
