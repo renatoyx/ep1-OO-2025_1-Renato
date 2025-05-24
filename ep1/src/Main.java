@@ -2,9 +2,12 @@ import java.util.Scanner;
 
 public class Main {
 
+    static Gerenciador gerenciador = new Gerenciador();
+    static Scanner entrada = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
-        Gerenciador gerenciador = new Gerenciador();
+        gerenciador.carregarAlunos();
+        gerenciador.carregarDisciplinas();
 
         int opcao;
 
@@ -17,20 +20,21 @@ public class Main {
             System.out.print("Escolha uma opção: ");
 
             opcao = entrada.nextInt();
+            entrada.nextLine();
 
             switch (opcao) {
                 case 1:
-                    modoAluno(entrada);
+                    modoAluno();
                     break;
                 case 2:
-                    modoDisciplina(entrada);
+                    modoDisciplina();
                     break;
                 case 3:
-                    modoAvaliacao(entrada);
+                    //modoAvaliacao();
                     break;
                 case 0:
-                    System.out.println("Saindo... Dados serão salvos.");
-                    // aqui você pode chamar a função de salvar em arquivo
+                    gerenciador.salvarAlunos();
+                    gerenciador.salvarDisciplinas();
                     break;
                 default:
                     System.out.println("Opção inválida.");
@@ -41,10 +45,8 @@ public class Main {
         entrada.close();
     }
 
-    public static void modoAluno(Scanner sc) {
+    public static void modoAluno() {
         int opcao;
-        Gerenciador gerenciador = new Gerenciador();
-        Scanner entrada = new Scanner(System.in);
 
         do {
             System.out.println("\n-- MENU ALUNO --");
@@ -54,7 +56,9 @@ public class Main {
             System.out.println("4. Trancar Disciplina");
             System.out.println("0. Voltar ao menu principal");
             System.out.print("Escolha: ");
-            opcao = sc.nextInt(); sc.nextLine();
+
+            opcao = entrada.nextInt();
+            entrada.nextLine();
 
             switch (opcao) {
                 case 1:
@@ -63,18 +67,48 @@ public class Main {
                 case 2:
                     gerenciador.listarAlunos();
                     break;
-                // etc.
+                case 3:
+                    gerenciador.matricularAlunoEmDisciplina(entrada);
+                    break;
+                case 4:
+                    System.out.println("Funcionalidade ainda não implementada.");
+                    break;
+                case 0:
+                    System.out.println("Voltando ao menu principal...");
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
             }
         } while (opcao != 0);
     }
 
-    public static void modoDisciplina(Scanner sc) {
-        System.out.println("\n-- MODO DISCIPLINA/TURMA --");
-        // Aqui você implementa menu do modo disciplina
+    public static void modoDisciplina() {
+        int opcao;
+
+        do {
+            System.out.println("\n-- MENU DISCIPLINA/TURMA --");
+            System.out.println("1. Cadastrar Disciplina");
+            System.out.println("2. Listar Disciplinas");
+            System.out.println("0. Voltar ao menu principal");
+            System.out.print("Escolha: ");
+
+            opcao = entrada.nextInt();
+            entrada.nextLine();
+
+            switch (opcao) {
+                case 1:
+                    gerenciador.cadastrarDisciplina(entrada);
+                    break;
+                case 2:
+                    gerenciador.listarDisciplinas();
+                    break;
+                case 0:
+                    System.out.println("Voltando ao menu principal...");
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        } while (opcao != 0);
     }
 
-    public static void modoAvaliacao(Scanner sc) {
-        System.out.println("\n-- MODO AVALIAÇÃO/FREQUÊNCIA --");
-        // Aqui você implementa menu do modo avaliação
-    }
 }

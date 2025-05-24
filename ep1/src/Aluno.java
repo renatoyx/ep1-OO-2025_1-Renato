@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Aluno {
     private String nome;
     private String matricula;
@@ -29,20 +32,23 @@ public class Aluno {
         return curso;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
-
-    public void setCurso(String curso) {
-        this.curso = curso;
-    }
 
     @Override
     public String toString() {
         return nome + " - " + matricula + " - " + curso;
     }
+
+    List<Disciplina> disciplinasMatriculadas = new ArrayList<>();
+
+    public void matricularEmDisciplina(Disciplina disciplina) {
+        if (disciplinasMatriculadas.contains(disciplina)) {
+            System.out.println("Aluno já está matriculado nessa disciplina.");
+            return;
+        }
+
+        disciplinasMatriculadas.add(disciplina);
+        System.out.println("Aluno matriculado na disciplina: " + disciplina.getNome());
+    }
+
+
 }
